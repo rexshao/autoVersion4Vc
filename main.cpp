@@ -44,22 +44,14 @@ int tm2week(tm* lt) {
 
 	//
 	mktime(lt);
-	int current_week = lt->tm_yday / 7;
 	int rest_day = lt->tm_yday % 7;
 	int first_wday = lt->tm_wday - rest_day;
 	if (first_wday < 0)
 	{
 		first_wday += 7;
 	}
-	if (rest_day > 0)
-	{
-		current_week++;
-	}
-	if (lt->tm_wday < first_wday)
-	{//前后挂两周
-		current_week++;
-	}
-	return current_week;
+	
+	return (lt->tm_yday+ first_wday)/7;
 
 }
 int main(int argc, char** argv)
